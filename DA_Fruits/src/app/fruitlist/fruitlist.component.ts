@@ -1,25 +1,21 @@
 import { CommonModule } from '@angular/common';
 import {NgStyle} from '@angular/common';
 import { Component } from '@angular/core';
+import { SinglefruitComponent } from './singlefruit/singlefruit.component';
 
 @Component({
   selector: 'app-fruitlist',
   standalone: true,
-  imports: [CommonModule, NgStyle],
+  imports: [CommonModule, NgStyle, SinglefruitComponent],
   templateUrl: './fruitlist.component.html',
   styleUrl: './fruitlist.component.scss'
 })
 
 export class FruitlistComponent {
+  fontColorGood = 'green';
+  fontColorBad = 'red';
+
   fruitlist = [
-    {
-      name: "Apfel",
-      img: "apple.png",
-      description: "Äpfel sind aufgrund ihres hohen Wassergehalts kalorienarm und enthalten nur Spuren von Fett und Eiweiß, dafür aber rund zwei Prozent Ballaststoffe und etwa elf Prozent Kohlenhydrate. Äpfel enthalten auch viele Vitamine und Mineralstoffe und sind daher eine wichtige Quelle für uns - zum Beispiel für Vitamin C.",
-      genus: "Kernobstgewächsen innerhalb der Familie der Rosengewächse",
-      stars: 2.3,
-      reviews: [{ name: "Kevin W.", text: "ist lecker" }, { name: "Arne P.", text: "nicht so meins" }],
-    },
     {
       name: "Banane",
       img: "banana.png",
@@ -61,4 +57,12 @@ export class FruitlistComponent {
       reviews: [{ name: "Kevin W.", text: "Ganz gut in der Regel!" }, { name: "Oliver J.", text: "Absoluter Favorit beim Frühstück" }],
     },
   ]
+
+  addComment(comment:string, index:number) {
+    this.fruitlist[index].reviews.push({
+      name: 'unknown',
+      text: comment
+    });
+  
+  }
 }
